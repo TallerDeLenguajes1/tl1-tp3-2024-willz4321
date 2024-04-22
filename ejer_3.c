@@ -1,31 +1,42 @@
-#include<stdlib.h>
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-void cargarNombres(char* nombres[5], char* buff);
+void cargarNombres(char *nombres[], int cantidad);
+void listarNombres(char *nombres[], int cantidad);
 
-int main(int argc, char const *argv[])
-{
-    char* nombres[5];
-    char *Buff; //variable auxiliar
-    Buff= (char *) malloc(100*sizeof(char));
+int main(int argc, char const *argv[]) {
+    int cantidadNombres = 5;
+    char *nombres[cantidadNombres];
+    char *Buff;
 
-    // A. Cargar nombres
-     cargarNombres(nombres, Buff);
-    free(Buff);  
+    Buff = (char *)malloc(100 * sizeof(char));
+
+    cargarNombres(nombres, cantidadNombres);
+    listarNombres(nombres, cantidadNombres);
+
+    free(Buff);
+
     return 0;
 }
-void cargarNombres(char* nombres[5], char* buff){
-    for(int i = 0; i<strlen(nombres); i++){    
-     printf ("Ingrese un nombre\n");
-     gets(buff);
-     strcpy(nombres[i],buff);
+
+void cargarNombres(char *nombres[], int cantidad) {
+    char *Buff;
+    Buff = (char *)malloc(100 * sizeof(char));
+
+    for (int i = 0; i < cantidad; i++) {
+        printf("Ingrese el nombre %d: ", i + 1);
+        gets(Buff);
+        nombres[i] = (char *)malloc((strlen(Buff) + 1) * sizeof(char));
+        strcpy(nombres[i], Buff);
     }
 
-    printf("\nNombres alamacenados");
-    for (int i = 0; i < strlen(nombres); i++)
-    {
-        printf("Nombre [%d]", i+1, nombres[i]);
+    free(Buff);
+}
+
+void listarNombres(char *nombres[], int cantidad) {
+    printf("\nNombres almacenados:\n");
+    for (int i = 0; i < cantidad; i++) {
+        printf("Nombre [%d]: %s\n", i + 1, nombres[i]);
     }
-    
 }
