@@ -4,9 +4,10 @@
 
 void cargarNombres(char *nombres[], int cantidad);
 void listarNombres(char *nombres[], int cantidad);
+int obtenerCantidadNombres();
 
 int main(int argc, char const *argv[]) {
-    int cantidadNombres = 5;
+    int cantidadNombres = obtenerCantidadNombres();
     char *nombres[cantidadNombres];
     char *Buff;
 
@@ -18,6 +19,12 @@ int main(int argc, char const *argv[]) {
     free(Buff);
 
     return 0;
+}
+int obtenerCantidadNombres() {
+    int cantidad;
+     printf("Ingrese la cantidad de nombres: ");
+     scanf("%d",cantidad);
+     return cantidad;
 }
 
 void cargarNombres(char *nombres[], int cantidad) {
